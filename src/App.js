@@ -31,11 +31,23 @@ import './App.css';
       })
     }
     render(){
+
+    const style = {
+      backgroundColor: 'grey',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+      //inline style
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a react App</h1>
         <p>This is really working!</p>
-        <button onClick={this.switchNameHandler.bind(this, 'Wesley Pizetta')}>Switch Name</button>
+        <button 
+        style={style}//calling the inline style by using "style"
+        onClick={this.switchNameHandler.bind(this, 'Wesley Pizetta')}>Switch Name</button>
           <Person 
             name={this.state.person[0].name} 
             age={this.state.person[0].age} 
