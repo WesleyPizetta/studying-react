@@ -11,10 +11,10 @@ import './App.css';
       ]
     };
 
-    switchNameHandler = () => {
+    switchNameHandler = (newName) => {
       this.setState({
         person: [
-          { name: 'Wesley Pizetta', age: 19 },
+          { name: newName, age: 19 },
           { name: 'Boglárka Bokor', age: 18 },
           { name: 'Key', age: 20 }
         ]
@@ -25,7 +25,7 @@ import './App.css';
       <div className="App">
         <h1>Hi, I'm a react App</h1>
         <p>This is really working!</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
+        <button onClick={this.switchNameHandler.bind(this, 'Wesley Pizetta')}>Switch Name</button>
           <Person 
             name={this.state.person[0].name} 
             age={this.state.person[0].age} 
@@ -33,6 +33,7 @@ import './App.css';
           <Person 
             name={this.state.person[1].name} 
             age={this.state.person[1].age}
+            click={this.switchNameHandler.bind(this, 'Wesie')}
           />
           <Person 
             name={this.state.person[2].name} 
