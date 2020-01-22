@@ -20,6 +20,16 @@ import './App.css';
         ]
       })
     } //method that you're not calling, but assigning as an event handler
+
+    nameChangedHandler = (event) => {
+      this.setState({
+        person: [
+          { name: 'Wesley', age: 19 },
+          { name: event.target.value, age: 18 },
+          { name: 'Key', age: 20 }
+        ]
+      })
+    }
     render(){
     return (
       <div className="App">
@@ -34,6 +44,7 @@ import './App.css';
             name={this.state.person[1].name} 
             age={this.state.person[1].age}
             click={this.switchNameHandler.bind(this, 'Wesie')}
+            change={this.nameChangedHandler}
           />
           <Person 
             name={this.state.person[2].name} 
