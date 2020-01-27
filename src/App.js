@@ -8,7 +8,8 @@ import './App.css';
         { name: 'Wesley', age: 19 },
         { name: 'Boglárka', age: 18 },
         { name: 'Key', age: 20 }
-      ]
+      ],
+      showPersons: false
     };
 
     switchNameHandler = (newName) => {
@@ -30,6 +31,14 @@ import './App.css';
         ]
       })
     }
+
+    togglePersonsHandler = () => {
+      const doesShow = this.state.showPersons;
+      this.setState({
+        showPersons: !doesShow
+      })
+    }
+
     render(){
 
     const style = {
@@ -47,21 +56,25 @@ import './App.css';
         <p>This is really working!</p>
         <button 
         style={style}//calling the inline style by using "style"
-        onClick={this.switchNameHandler.bind(this, 'Wesley Pizetta')}>Switch Name</button>
-          <Person 
-            name={this.state.person[0].name} 
-            age={this.state.person[0].age} 
-          />
-          <Person 
-            name={this.state.person[1].name} 
-            age={this.state.person[1].age}
-            click={this.switchNameHandler.bind(this, 'Wesie')}
-            change={this.nameChangedHandler}
-          />
-          <Person 
-            name={this.state.person[2].name} 
-            age={this.state.person[2].age}
-          />
+        onClick={this.togglePersonsHandler}>Switch Name</button>
+         { this.state.showPersons ? 
+          <div>
+            <Person 
+              name={this.state.person[0].name} 
+              age={this.state.person[0].age} 
+            />
+            <Person 
+              name={this.state.person[1].name} 
+              age={this.state.person[1].age}
+              click={this.switchNameHandler.bind(this, 'Wesie')}
+              change={this.nameChangedHandler}
+            />
+            <Person 
+              name={this.state.person[2].name} 
+              age={this.state.person[2].age}
+            />
+          </div> : null
+          }
       </div>
     );// return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'I\'m a React App!!!')) compiler version of jsx above this
   }
