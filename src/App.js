@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 import './App.css';
 
+
   class App extends Component {
     state = {
       person: [
@@ -39,8 +40,7 @@ import './App.css';
       })
     }
 
-    render(){
-
+    render () {
     const style = {
       backgroundColor: 'grey',
       font: 'inherit',
@@ -50,6 +50,20 @@ import './App.css';
       //inline style
     }
 
+    let persons = [];
+
+    if ( this.state.showPersons ) {
+      persons = (
+        <div>
+          {this.state.person.map(persons => {
+            return <Person 
+              name={persons.name}
+              age={persons.age} />
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a react App</h1>
@@ -57,24 +71,7 @@ import './App.css';
         <button 
         style={style}//calling the inline style by using "style"
         onClick={this.togglePersonsHandler}>Switch Name</button>
-         { this.state.showPersons ? 
-          <div>
-            <Person 
-              name={this.state.person[0].name} 
-              age={this.state.person[0].age} 
-            />
-            <Person 
-              name={this.state.person[1].name} 
-              age={this.state.person[1].age}
-              click={this.switchNameHandler.bind(this, 'Wesie')}
-              change={this.nameChangedHandler}
-            />
-            <Person 
-              name={this.state.person[2].name} 
-              age={this.state.person[2].age}
-            />
-          </div> : null
-          }
+        {persons}
       </div>
     );// return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'I\'m a React App!!!')) compiler version of jsx above this
   }
