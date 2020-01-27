@@ -13,15 +13,6 @@ import './App.css';
       showPersons: false
     };
 
-    switchNameHandler = (newName) => {
-      this.setState({
-        person: [
-          { name: newName, age: 19 },
-          { name: 'Boglárka Bokor', age: 18 },
-          { name: 'Key', age: 20 }
-        ]
-      })
-    } //method that you're not calling, but assigning as an event handler
 
     nameChangedHandler = (event) => {
       this.setState({
@@ -40,6 +31,14 @@ import './App.css';
       })
     }
 
+    deletePersonHandler = (personIndex) => {
+      console.log('entrei ' + personIndex);
+      const persons = this.state.person;
+      persons.splice(personIndex, 1);
+      this.setState({person: persons});
+      
+    }
+
     render () {
     const style = {
       backgroundColor: 'grey',
@@ -50,13 +49,14 @@ import './App.css';
       //inline style
     }
 
-    let persons = [];
+    let persons = null;
 
     if ( this.state.showPersons ) {
       persons = (
         <div>
-          {this.state.person.map(persons => {
+          {this.state.person.map((persons, index) => {
             return <Person 
+              click={() => this.deletePersonHandler(index)}
               name={persons.name}
               age={persons.age} />
           })}
